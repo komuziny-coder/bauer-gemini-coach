@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Bauer Gemini Coach - Launcher</title>
+    <title>🚀 Bauer Gemini Coach - Advanced</title>
     <style>
         * {
             margin: 0;
@@ -25,7 +25,7 @@
             background: white;
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             padding: 40px;
             animation: slideUp 0.6s ease-out;
@@ -48,7 +48,7 @@
         }
 
         .header h1 {
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: 8px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -59,109 +59,113 @@
         .header p {
             color: #666;
             font-size: 14px;
-            margin-top: 8px;
         }
 
-        .section {
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+        .info-box {
+            background: #f0f3ff;
+            border-left: 4px solid #667eea;
+            padding: 16px;
+            border-radius: 8px;
             margin-bottom: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
         }
 
-        .selector-full {
-            grid-column: 1 / -1;
-        }
-
-        .option {
-            padding: 12px;
+        .program-display {
+            background: #f9f9f9;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #f9f9f9;
-            font-size: 13px;
-            font-weight: 500;
-            color: #333;
+            padding: 16px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
-        .option:hover {
-            border-color: #667eea;
-            background: #f0f3ff;
-            transform: translateY(-2px);
+        .program-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
         }
 
-        .option.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: #667eea;
-        }
-
-        .personas {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .persona-option {
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #f9f9f9;
-            text-align: left;
-        }
-
-        .persona-option:hover {
-            border-color: #667eea;
-            background: #f0f3ff;
-        }
-
-        .persona-option.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: #667eea;
-        }
-
-        .persona-name {
+        .program-name {
+            font-size: 18px;
             font-weight: 600;
-            font-size: 13px;
+            color: #333;
             margin-bottom: 4px;
         }
 
-        .persona-desc {
+        .program-price {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .customer-display {
+            background: #fff8f0;
+            border: 2px solid #e8c4b3;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .customer-label {
             font-size: 12px;
-            opacity: 0.7;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .customer-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .customer-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .objection-display {
+            background: #fef5f0;
+            border: 2px solid #f0997b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .objection-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .objection-text {
+            font-size: 14px;
+            color: #333;
+            font-style: italic;
+            line-height: 1.6;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
-            margin-top: 30px;
+            margin-bottom: 15px;
         }
 
         .btn {
             padding: 14px 20px;
             border: none;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -191,19 +195,13 @@
             transform: translateY(-2px);
         }
 
-        .info-box {
-            background: #f0f3ff;
-            border-left: 4px solid #667eea;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            color: #333;
+        .footer {
+            text-align: center;
             margin-top: 20px;
-            line-height: 1.6;
-        }
-
-        .info-box strong {
-            color: #667eea;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #999;
         }
 
         .copy-feedback {
@@ -217,6 +215,7 @@
             font-size: 13px;
             animation: slideIn 0.3s ease-out;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
         @keyframes slideIn {
@@ -230,13 +229,33 @@
             }
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
             font-size: 12px;
+        }
+
+        .stat {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 10px;
             color: #999;
+            text-transform: uppercase;
+            margin-top: 4px;
         }
 
         @media (max-width: 600px) {
@@ -245,14 +264,14 @@
             }
 
             .header h1 {
-                font-size: 24px;
-            }
-
-            .selector {
-                grid-template-columns: 1fr;
+                font-size: 22px;
             }
 
             .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
                 grid-template-columns: 1fr;
             }
         }
@@ -262,267 +281,298 @@
     <div class="container">
         <div class="header">
             <h1>🚀 Bauer Gemini Coach</h1>
-            <p>Einwandbehandlung trainieren mit KI</p>
+            <p>Verkaufstraining mit echten Bauer-Programmen</p>
         </div>
 
-        <!-- Level Selector -->
-        <div class="section">
-            <div class="section-title">📊 Schwierigkeitslevel</div>
-            <div class="selector">
-                <div class="option active" data-level="1">Level 1: Einfach</div>
-                <div class="option" data-level="2">Level 2: Normal</div>
-                <div class="option" data-level="3">Level 3: Fortgeschritten</div>
-                <div class="option" data-level="4">Level 4: Sehr Anspruchsvoll</div>
-                <div class="option" data-level="5">Level 5: Elite</div>
-            </div>
-        </div>
-
-        <!-- Persona Selector -->
-        <div class="section">
-            <div class="section-title">👤 Kundenpersona</div>
-            <div class="personas">
-                <div class="persona-option active" data-persona="skeptiker">
-                    <div class="persona-name">📊 Der analytische Skeptiker</div>
-                    <div class="persona-desc">45–55 Jahre, akademisch, vergleicht mit ETFs, sieht Lücken</div>
-                </div>
-                <div class="persona-option" data-persona="unsicher">
-                    <div class="persona-name">😟 Der emotional Unschlüssige</div>
-                    <div class="persona-desc">35–48 Jahre, Unternehmer, überfordert, braucht Bestätigung</div>
-                </div>
-                <div class="persona-option" data-persona="dominant">
-                    <div class="persona-name">💪 Der dominante Forderer</div>
-                    <div class="persona-desc">50–65 Jahre, Owner, direkt, verhandelt, will Special Deals</div>
-                </div>
-                <div class="persona-option" data-persona="vorsichtig">
-                    <div class="persona-name">🛡️ Der sicherheitsorientiert Vorsichtige</div>
-                    <div class="persona-desc">55–70 Jahre, Beamter/Arzt, konservativ, fürchtet Risiken</div>
-                </div>
-                <div class="persona-option" data-persona="budget">
-                    <div class="persona-name">💰 Der Budget-bewusste Einsteiger</div>
-                    <div class="persona-desc">30–42 Jahre, Angestellte/r, sparsam, Angst vor Einsatz</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Info -->
+        <!-- Info -->
         <div class="info-box">
-            <strong>💡 Hinweis:</strong> Nutze für jeden Kunden einen <strong>neuen Chat</strong> in Gemini! Das hält die Struktur sauber und verhindert Persona-Vermischung.
+            💡 Jedes Mal neue Kundentypen & Einwände! Click "Generate" um zu starten, dann "Gemini Starten" zum trainieren.
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="programCount">5</div>
+                <div class="stat-label">Programme</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="customerCount">5</div>
+                <div class="stat-label">Kundentypen</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="objectionCount">40+</div>
+                <div class="stat-label">Einwände</div>
+            </div>
+        </div>
+
+        <!-- Program Display -->
+        <div class="program-display">
+            <div class="program-label">📊 Aktuelles Programm</div>
+            <div class="program-name" id="programName">—</div>
+            <div class="program-price" id="programPrice">—</div>
+        </div>
+
+        <!-- Customer Display -->
+        <div class="customer-display">
+            <div class="customer-label">👤 Kundentyp</div>
+            <div class="customer-name" id="customerName">—</div>
+            <div class="customer-desc" id="customerDesc">—</div>
+        </div>
+
+        <!-- Objection Display -->
+        <div class="objection-display">
+            <div class="objection-label">⚠️ Erster Einwand</div>
+            <div class="objection-text" id="objectionText">—</div>
         </div>
 
         <!-- Buttons -->
         <div class="buttons">
+            <button class="btn btn-secondary" onclick="generateNew()">🔄 Generate New</button>
             <button class="btn btn-primary" onclick="startGemini()">🚀 Gemini Starten</button>
             <button class="btn btn-secondary" onclick="copyPrompt()">📋 Prompt Kopieren</button>
         </div>
 
         <div class="footer">
-            <p>Made for Invest Bauer • 2025</p>
-            <p>Offline nutzbar • Keine Daten-Speicherung</p>
+            <p>Invest Bauer • Vertriebstraining 2025</p>
+            <p style="margin-top: 8px; font-size: 11px;">Zufallsprinzip: Neue Kunden & Einwände bei jedem Start</p>
         </div>
     </div>
 
     <script>
-        const PROMPT = `# 🎯 VERTRIEBSCOACH INVEST BAUER – GEMINI OPTIMIZATION
-## Prompt für intensives Einwandbehandlung-Training (Post-Closing Szenarios)
+        // PROGRAMME (aus Bauer-Dokumenten)
+        const programs = [
+            {
+                name: "Investitionsmandat",
+                price: "8.790 € brutto",
+                duration: "12 Monate",
+                features: ["Off-Market-Zugang", "Keine Käufercourage", "Gutachten kostenfrei", "2 Beratungstermine/Jahr"]
+            },
+            {
+                name: "Investitionsmandat Extended",
+                price: "15.000 € Voraus / 8.000 € pro Jahr",
+                duration: "24 Monate",
+                features: ["Off-Market-Zugang", "Bevorzugter Zugang", "4 Beratungstermine/Jahr", "Halbjährliche Strategieüberprüfung"]
+            },
+            {
+                name: "VIP Mandat",
+                price: "17.990 € brutto",
+                duration: "12 Monate",
+                features: ["VIP-Priorität", "12 Beratungstermine/Jahr", "2 Termine mit Florian Bauer/Jahr", "Quartalsweise Portfolioüberprüfung"]
+            },
+            {
+                name: "VIP Mandat Extended",
+                price: "32.000 € Voraus / 17.000 € pro Jahr",
+                duration: "24 Monate",
+                features: ["VIP-Priorität", "12 Beratungstermine/Jahr", "4 Termine mit Florian Bauer/Jahr", "Strategische Portfoliostrukturierung"]
+            },
+            {
+                name: "Struktur & Steuer-Strategiemandat",
+                price: "12.000 € brutto",
+                duration: "flexibel",
+                features: ["Individuelle Beratung", "Vorbereitung Steuerberater", "Strukturierungsoptionen", "Steuerliche Hinweise"]
+            }
+        ];
+
+        // KUNDENTYPEN
+        const customers = [
+            {
+                name: "Der Analytische Skeptiker",
+                age: "45–55 Jahre",
+                type: "Akademisch, vergleicht gerne",
+                trigger: "Zu kompliziert, Zahlen stimmen nicht",
+                objections: [
+                    "Das klingt zu schön um wahr zu sein",
+                    "Warum nicht lieber ETFs?",
+                    "Ich verstehe die Steuerlogik nicht",
+                    "Wie rechnet ihr denn die Rendite?",
+                    "Die Zahlen passen nicht zusammen"
+                ]
+            },
+            {
+                name: "Der Emotional Unschlüssige",
+                age: "35–48 Jahre",
+                type: "Unternehmer, überfordert",
+                trigger: "Zu viele Infos, Angst falsch zu entscheiden",
+                objections: [
+                    "Ich muss mit meinem Partner sprechen",
+                    "Das ist mir zu riskant",
+                    "Ich brauche Zeit zum Überlegen",
+                    "Ich bin mir ehrlich gesagt unsicher",
+                    "Das sind mir zu viele Optionen auf einmal"
+                ]
+            },
+            {
+                name: "Der Dominante Forderer",
+                age: "50–65 Jahre",
+                type: "Owner, direkt, preissensitiv",
+                trigger: "Will Special Deals, dominiert Gespräch",
+                objections: [
+                    "Warum sollte ich IHRE Objekte kaufen?",
+                    "Der Preis ist zu hoch für diese Leistung",
+                    "Ich kann das besser strukturieren",
+                    "Geben Sie mir einen besseren Deal",
+                    "Andere Anbieter sind günstiger"
+                ]
+            },
+            {
+                name: "Der Sicherheitsorientierte Vorsichtige",
+                age: "55–70 Jahre",
+                type: "Beamter/Arzt, konservativ",
+                trigger: "Mieterausfall, Marktrisiko, Zinsen",
+                objections: [
+                    "Was passiert, wenn die Mieter nicht zahlen?",
+                    "Die Zinsen sind viel zu hoch",
+                    "Ich glaube nicht, dass das funktioniert",
+                    "Wer haftet für Sanierungen?",
+                    "Ist jetzt wirklich der richtige Zeitpunkt?"
+                ]
+            },
+            {
+                name: "Der Budget-Bewusste Einsteiger",
+                age: "30–42 Jahre",
+                type: "Angestellte/r, sparsam",
+                trigger: "Eigenkapital-Sorge, zu hohe Raten",
+                objections: [
+                    "Ich habe nicht genug Eigenkapital",
+                    "Das ist mir zu viel auf einmal",
+                    "Kann ich mit weniger starten?",
+                    "Die Monatsrate ist zu hoch",
+                    "Ich warte lieber, bis ich mehr gespart habe"
+                ]
+            }
+        ];
+
+        // GLOBALE VARIABLEN
+        let currentProgram, currentCustomer, currentObjection, generatedPrompt;
+
+        // FUNKTION: Zufallselement aus Array
+        function randomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // FUNKTION: Neue Kombination generieren
+        function generateNew() {
+            currentProgram = randomElement(programs);
+            currentCustomer = randomElement(customers);
+            currentObjection = randomElement(currentCustomer.objections);
+
+            // Anzeige aktualisieren
+            document.getElementById('programName').textContent = currentProgram.name;
+            document.getElementById('programPrice').textContent = currentProgram.price;
+            document.getElementById('customerName').textContent = currentCustomer.name;
+            document.getElementById('customerDesc').textContent = `${currentCustomer.age} • ${currentCustomer.type}`;
+            document.getElementById('objectionText').textContent = `"${currentObjection}"`;
+
+            // Prompt generieren
+            generatePrompt();
+        }
+
+        // FUNKTION: Prompt dynamisch generieren
+        function generatePrompt() {
+            generatedPrompt = `# 🎯 VERTRIEBSCOACH INVEST BAUER
+## Einwandbehandlung-Training: ${currentProgram.name}
 
 ---
 
-## PHASE 1: SETUP & ROLLENDEFINITON
+## DEINE ROLLE
+Du bist erfahrener Vertriebscoach und spielst einen ECHTEN KUNDEN nach einem Closing-Gespräch.
 
-### Deine Rolle
-Du bist **Vertriebscoach & Einwandbehandlungs-Simulator auf Expert*innenniveau**. Du hast 25+ Jahre Erfahrung im Immobilienvertrieb und kennst Invest Bauer & Florian Bauers Philosophie tiefgreifend.
+**Kundentyp:** ${currentCustomer.name}
+- Alter: ${currentCustomer.age}
+- Profil: ${currentCustomer.type}
+- Trigger: ${currentCustomer.trigger}
 
-**Dein Job ist NICHT, Lösungen anzubieten. Dein Job ist, REALISTISCHE KUNDEN zu spielen – die bereits das Closing-Gespräch geführt haben, ein All-In oder VIP-Paket gekauft haben, und JETZT beim 1. Strategietermin oder in der Post-Sales-Phase Einwände schieben.**
-
-### Kontext: Kundenstatus
-Der Kunde hat BEREITS GEKAUFT:
-- ✅ All-In oder VIP-Paket erworben
-- ✅ Closing-Gespräch geführt (sieht Zahlen/Renditen/Strategien)
-- ✅ Jetzt im **1. Strategietermin** oder **Post-Sale-Follow-Up**
-- ❓ Aber: Einwände entstehen trotzdem – Skepsis, Unsicherheit, Drittmeinungen
-
-Diese Phase ist KRITISCH – viele Kunden second-guess sich hier.
+**Programm, das der Kunde gerade gekauft hat:**
+${currentProgram.name}
+- Preis: ${currentProgram.price}
+- Dauer: ${currentProgram.duration}
+- Features: ${currentProgram.features.join(', ')}
 
 ---
 
-## SPIELREGELN FÜR REALISTISCHE SIMULATION
+## STARTSZENARIO
 
-### ✅ Was ich TUE:
-1. **NUR einen Einwand stellen pro Runde** – klar, direkt, natürlich
-2. **Wirklich in der Rolle bleiben** – nicht brechen, nicht Coaching geben
-3. **Dynamisch reagieren** – auf DEINE Worte, nicht auf Skript
-4. **Ungeduldig sein, wenn nötig** – echte Kunden sind es auch
-5. **Häkchen nach, wenn du schwach argumentierst** – „Das verstehe ich aber noch nicht..." oder „Ja, aber…"
-6. **Zustimmen, wenn du überzeugend warst** – aber dann Nächstes Topic
+Der Kunde HAT BEREITS das Closing-Gespräch geführt und kennt die Zahlen/Features.
+Jetzt beim 1. Strategietermin oder Post-Sale-Follow-Up kommen Einwände.
 
-### ❌ Was ich NICHT tue:
-- ❌ Sofort Lösungen geben
-- ❌ Dich loben (du brauchst Feedback, nicht Bestätigung)
-- ❌ Auswendig gelernte Floskeln sagen (klingt unglaubwürdig)
-- ❌ Mehrere Einwände auf einmal
-- ❌ Dir zur Seite springen, wenn es unangenehm wird
+**Der Kunde sagt JETZT:**
+"${currentObjection}"
 
 ---
 
-## KUNDENPROFILE
+## SPIELREGELN
 
-### Persona A: Der analytische Skeptiker
-- Alter: 45–55, akademisch, höheres Einkommen
-- Problem: Sieht Lücken in den Zahlen, vergleicht mit ETFs
-- Trigger: Zu kompliziert, zu opulent verkauft, nicht nachvollziehbar
-- Einwände: „Das klingt zu schön um wahr zu sein" | „Warum nicht ETFs?" | „Ich verstehe die Steuerlogik nicht"
+✅ TU:
+1. Wirklich in der Rolle bleiben
+2. NUR einen Einwand pro Runde
+3. Dynamisch reagieren auf DEINE Worte
+4. Hartnäckig nachfragen, wenn schwache Argumentation
+5. Zustimmen, wenn überzeugend
 
-### Persona B: Der emotional Unschlüssige
-- Alter: 35–48, Unternehmer/in, erfolgreich aber unsicher
-- Problem: Fühlt sich überfordert, braucht Bestätigung
-- Trigger: Zu viele Informationen, Angst falsch zu entscheiden
-- Einwände: „Ich muss mit meinem Partner sprechen" | „Das ist mir zu riskant" | „Ich brauche Zeit zum Überlegen"
-
-### Persona C: Der dominante Forderer
-- Alter: 50–65, Unternehmer/Owner, direkt, fordernd
-- Problem: Verhandelt Konditionen, hinterfragt alles, will Special Deals
-- Trigger: Preissensitiv, will VIP-Treatment, dominiert das Gespräch
-- Einwände: „Warum sollte ich IHRE Objekte kaufen?" | „Der Preis ist zu hoch" | „Ich kann besser strukturieren"
-
-### Persona D: Der sicherheitsorientierte Vorsichtige
-- Alter: 55–70, Beamter/Arzt, konservativ, risikomindernd
-- Problem: Braucht Garantien, fürchtet Ausfallrisiken, zweifelt an Markt
-- Trigger: Mieterausfall, Reparaturen, Marktrisiko, Zinsen
-- Einwände: „Was passiert, wenn die Mieter nicht zahlen?" | „Die Zinsen sind viel zu hoch" | „Ich glaube nicht, dass das funktioniert"
-
-### Persona E: Der Budget-bewusste Einsteiger
-- Alter: 30–42, Angestellte/r, sparsam, vorsichtig
-- Problem: Hat Interesse, aber Angst vor finanziellem Einsatz
-- Trigger: Eigenkapital-Sorge, Monatsrate zu hoch
-- Einwände: „Ich habe nicht genug Eigenkapital" | „Das ist mir zu viel auf einmal" | „Kann ich mit weniger starten?"
-
----
-
-## SCHWIERIGKEITSSTUFEN
-
-### Level 1: Einfach
-- Einzelne, klare Einwände
-- Ich gebe Zeit zum Atmen
-- Eher offene, nicht aggressive Einwände
-
-### Level 2: Normal
-- Realistische Einwände mit psychologischer Tiefe
-- Ich höre wirklich zu, reagiere auf deine Worte
-- Wenn schwach argumentiert: einmal Häkchen
-
-### Level 3: Fortgeschritten
-- Mehrere Einwände kombiniert
-- Ich höre realistisch zu
-- Wenn schwach: Ich bohre nach
-
-### Level 4: Sehr anspruchsvoll
-- Ich unterbreche mitunter
-- Mehrere Argumente gleichzeitig
-- Mix aus emotional und rational
-- Realistische Ungeduld
-
-### Level 5: Elite
-- Ich bin anspruchsvoller Kunde – warum sollte ich DICH wählen
-- Ich kombiniere Einwände, wechsle Topics
-- Ich zweifle deine Aussagen an
-- Ich vergleiche mit anderen Anbietern
-- Realistische Gesprächskomplexität
+❌ TU NICHT:
+- Sofort Lösungen geben
+- Mehrere Einwände gleichzeitig
+- Auswendig gelernte Floskeln
 
 ---
 
 ## FEEDBACK (auf Anfrage)
 
-Du kannst jederzeit sagen:
-- „Feedback bitte" → Ich verlasse die Kundenrolle
-- „Wie war das?" → Kurzes Feedback + Optimierungsvorschlag
-- „Andere Persona" → Ich wechsle den Kunden
+Schreib "Feedback bitte" → Ich verlasse Kundenrolle
+Schreib "Andere Persona" → Ich wechsle Kunden
+Schreib "Nächster Einwand" → Nächster Objection aus diesem Kundentyp
 
 ---
 
-## BAUER-SPEZIFISCHE ARGUMENTE
+## CORE-ARGUMENTE (Bauer-spezifisch)
 
-### ALL-IN PAKET:
-- Preis: 2.500–5.000 EUR
-- Nutzen: Courtage-Einsparung (10.000–15.000 EUR pro Objekt!)
-- Keine versteckten Gebühren
-
-### VIP PAKET:
-- Preis: 10.000+ EUR
-- 1:1 mit Florian Bauer
-- Exklusive Objekte
-
-### CORE-ARGUMENTE:
-1. **Courtage-Einsparung**: ca. 3–5% vom Kaufpreis
-2. **Gesamtrendite**: Cashflow + Wertsteigerung + Steuer + Tilgung
-3. **Eigenkapitalrendite**: 8–20% p.a. (besser als ETFs)
-4. **Marathon nicht Sprint**: 10-20 Jahre denken, nicht 1-2 Jahre
-5. **Social Proof**: 90% der Kunden finden in 60 Tagen ihr erstes Objekt
+**Für ${currentProgram.name}:**
+- Keine Courtage: Spart 10.000–20.000 EUR pro Objekt!
+- Exklusive Off-Market-Objekte (nicht öffentlich)
+- Gutachten kostenlos (spart 1.500–3.000 EUR)
+- Individuelles Beratungsverhältnis
+- Transparente Kostenstruktur
+- Steuerliche Optimierung
+- 90% der Kunden finden in 60 Tagen ihr erstes Objekt
 
 ---
 
 ## STARTSIGNAL
 
-Schreib:
-\`\`\`
-SIMULATION START
-Level: [1-5]
-Persona: [Name oder "frei"]
-Fokus: [Optional]
-\`\`\`
+Ich bin jetzt **${currentCustomer.name}** und sage:
 
-Dann geht's los! 🚀`;
+"${currentObjection}"
 
-        let selectedLevel = '1';
-        let selectedPersona = 'skeptiker';
+Deine Antwort?`;
+        }
 
-        // Event Listeners für Level
-        document.querySelectorAll('[data-level]').forEach(el => {
-            el.addEventListener('click', function() {
-                document.querySelectorAll('[data-level]').forEach(e => e.classList.remove('active'));
-                this.classList.add('active');
-                selectedLevel = this.dataset.level;
-            });
-        });
-
-        // Event Listeners für Personas
-        document.querySelectorAll('[data-persona]').forEach(el => {
-            el.addEventListener('click', function() {
-                document.querySelectorAll('[data-persona]').forEach(e => e.classList.remove('active'));
-                this.classList.add('active');
-                selectedPersona = this.dataset.persona;
-            });
-        });
-
+        // FUNKTION: Prompt kopieren
         function copyPrompt() {
-            navigator.clipboard.writeText(PROMPT).then(() => {
+            if (!generatedPrompt) {
+                alert('Klick erst "Generate New" um einen Prompt zu erstellen!');
+                return;
+            }
+            navigator.clipboard.writeText(generatedPrompt).then(() => {
                 showFeedback('✅ Prompt kopiert!');
             }).catch(() => {
-                alert('Fehler beim Kopieren. Bitte manuell kopieren.');
+                alert('Fehler beim Kopieren');
             });
         }
 
+        // FUNKTION: Gemini öffnen
         function startGemini() {
-            const personaMap = {
-                'skeptiker': 'Der analytische Skeptiker',
-                'unsicher': 'Der emotional Unschlüssige',
-                'dominant': 'Der dominante Forderer',
-                'vorsichtig': 'Der sicherheitsorientierte Vorsichtige',
-                'budget': 'Der Budget-bewusste Einsteiger'
-            };
-
-            const startMessage = `SIMULATION START
-Level: ${selectedLevel}
-Persona: ${personaMap[selectedPersona]}
-Fokus: Frei`;
-
+            if (!generatedPrompt) {
+                alert('Klick erst "Generate New" um einen Prompt zu erstellen!');
+                return;
+            }
             copyPrompt();
             setTimeout(() => {
-                const geminiUrl = 'https://gemini.google.com/';
-                window.open(geminiUrl, '_blank');
-                showFeedback('✅ Gemini öffnet sich... Prompt in Zwischenablage!');
+                window.open('https://gemini.google.com/', '_blank');
+                showFeedback('✅ Gemini öffnet sich! Paste: Strg+V');
             }, 500);
         }
 
+        // FUNKTION: Feedback anzeigen
         function showFeedback(message) {
             const feedback = document.createElement('div');
             feedback.className = 'copy-feedback';
@@ -530,6 +580,11 @@ Fokus: Frei`;
             document.body.appendChild(feedback);
             setTimeout(() => feedback.remove(), 3000);
         }
+
+        // INIT: Beim Laden automatisch erste Kombination
+        window.addEventListener('load', () => {
+            generateNew();
+        });
     </script>
 </body>
 </html>
