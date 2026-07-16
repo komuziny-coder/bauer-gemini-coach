@@ -3,414 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bauer Gemini Coach</title>
+    <title>Bauer Gemini Coach 2.0</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #10b981;
-            --primary-dark: #059669;
-            --accent: #8b5cf6;
-            --dark: #1f2937;
-            --light: #f9fafb;
-            --border: #e5e7eb;
+            --primary: #10b981; --primary-dark: #059669;
+            --accent: #8b5cf6; --dark: #1f2937;
+            --light: #f9fafb; --border: #e5e7eb;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-            color: var(--dark);
+            min-height: 100vh; padding: 40px 20px; color: var(--dark);
         }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 50px;
-        }
-
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 50px; }
         .header h1 {
-            font-size: 42px;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            font-size: 42px; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 8px;
             background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        .header p {
-            font-size: 14px;
-            opacity: 0.6;
-            font-weight: 400;
-        }
-
+        .header p { font-size: 14px; opacity: 0.6; font-weight: 400; }
         .card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: white; border-radius: 16px; padding: 40px; margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 1px solid rgba(0, 0, 0, 0.04);
         }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 28px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-title i {
-            font-size: 18px;
-            color: var(--primary);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 28px;
-        }
-
-        .stat {
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
+        .card-title { font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+        .card-title i { font-size: 18px; color: var(--primary); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+        .stat { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 24px; border-radius: 12px; border: 1px solid var(--border); }
+        .stat-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
         .stat-value {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 32px; font-weight: 700;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        .level-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-bottom: 28px;
-        }
-
+        .level-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
         .level-btn {
-            padding: 16px 12px;
-            border: 1px solid var(--border);
-            background: white;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            text-align: center;
+            padding: 16px 12px; border: 1px solid var(--border); background: white; border-radius: 10px;
+            cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.25s ease; text-align: center;
         }
-
-        .level-btn:hover {
-            border-color: var(--primary);
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .level-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-        }
-
-        .session-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-
-        .info-box {
-            background: #f9fafb;
-            padding: 16px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        .info-label {
-            font-size: 11px;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .info-value {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .button-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 28px;
-        }
-
+        .level-btn:hover { border-color: var(--primary); background: rgba(16, 185, 129, 0.05); }
+        .level-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
+        .session-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+        .info-box { background: #f9fafb; padding: 16px; border-radius: 10px; border: 1px solid var(--border); }
+        .info-label { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
+        .info-value { font-size: 14px; font-weight: 600; color: var(--dark); }
+        .button-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
         .btn {
-            padding: 13px 16px;
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            padding: 13px 16px; border: none; border-radius: 10px; font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            grid-column: 1 / -1;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .btn-gemini {
-            background: #8b5cf6;
-            color: white;
-            border: none;
-        }
-
-        .btn-gemini:hover {
-            background: #7c3aed;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 28px;
-            border-bottom: 1px solid var(--border);
-        }
-
+        .btn-primary { background: var(--primary); color: white; grid-column: 1 / -1; }
+        .btn-primary:hover { background: var(--primary-dark); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15); }
+        .btn-secondary { background: white; color: var(--primary); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--primary); background: rgba(16, 185, 129, 0.05); }
+        .btn-gemini { background: #8b5cf6; color: white; border: none; }
+        .btn-gemini:hover { background: #7c3aed; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 28px; border-bottom: 1px solid var(--border); }
         .tab-btn {
-            padding: 12px 16px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            color: #6b7280;
-            border-bottom: 2px solid transparent;
-            transition: all 0.25s ease;
+            padding: 12px 16px; border: none; background: none; cursor: pointer; font-size: 13px;
+            font-weight: 600; color: #6b7280; border-bottom: 2px solid transparent; transition: all 0.25s ease;
         }
-
-        .tab-btn:hover {
-            color: var(--dark);
-        }
-
-        .tab-btn.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
+        .tab-btn:hover { color: var(--dark); }
+        .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
         .prompt-box {
-            background: #f3f4f6;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            line-height: 1.6;
-            max-height: 500px;
-            overflow-y: auto;
-            margin-bottom: 16px;
-            color: #1f2937;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            background: #f3f4f6; border: 1px solid var(--border); border-radius: 10px; padding: 20px;
+            font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; max-height: 500px;
+            overflow-y: auto; margin-bottom: 16px; color: #1f2937; white-space: pre-wrap; word-wrap: break-word;
         }
-
         .session-item {
-            padding: 14px;
-            background: #f9fafb;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 14px; background: #f9fafb; border: 1px solid var(--border); border-radius: 10px;
+            margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
         }
-
-        .session-info {
-            font-size: 13px;
-            color: var(--dark);
-            font-weight: 500;
-        }
-
-        .session-score {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .rating-box {
-            text-align: center;
-            padding: 20px;
-            background: #fef3c7;
-            border-radius: 10px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .rating-box.active {
-            display: block;
-        }
-
-        .stars {
-            font-size: 36px;
-            letter-spacing: 12px;
-            margin-bottom: 16px;
-            cursor: pointer;
-        }
-
-        .star {
-            color: #ddd;
-            transition: all 0.2s ease;
-        }
-
-        .star:hover,
-        .star.active {
-            color: #f59e0b;
-            transform: scale(1.15);
-        }
-
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 13px;
-            font-family: inherit;
-            resize: vertical;
-            margin-bottom: 12px;
-        }
-
+        .session-info { font-size: 13px; color: var(--dark); font-weight: 500; }
+        .session-score { font-size: 13px; font-weight: 700; color: var(--primary); }
+        .rating-box { text-align: center; padding: 20px; background: #fef3c7; border-radius: 10px; margin: 20px 0; display: none; }
+        .rating-box.active { display: block; }
+        .stars { font-size: 36px; letter-spacing: 12px; margin-bottom: 16px; cursor: pointer; }
+        .star { color: #ddd; transition: all 0.2s ease; }
+        .star:hover, .star.active { color: #f59e0b; transform: scale(1.15); }
+        textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: inherit; resize: vertical; margin-bottom: 12px; }
         .feedback-toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            animation: slideIn 0.3s ease-out;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: fixed; top: 20px; right: 20px; background: var(--primary); color: white; padding: 12px 20px;
+            border-radius: 8px; font-size: 13px; font-weight: 600; animation: slideIn 0.3s ease-out; z-index: 1000; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
+        @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
         @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            .session-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .level-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .button-group {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 32px;
-            }
-
-            .card {
-                padding: 24px;
-            }
+            .grid-2, .session-grid, .button-group { grid-template-columns: 1fr; }
+            .level-grid { grid-template-columns: repeat(3, 1fr); }
+            .header h1 { font-size: 32px; } .card { padding: 24px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Gemini Coach</h1>
-            <p>Professional Sales Training für Bauer</p>
+            <h1>Gemini Coach 2.0</h1>
+            <p>Professional Sales Training Simulator</p>
         </div>
 
-        <!-- DASHBOARD CARD -->
         <div class="card">
-            <div class="card-title">
-                <i class="fas fa-chart-line"></i> Fortschritt
-            </div>
+            <div class="card-title"><i class="fas fa-chart-line"></i> Performance Dashboard</div>
             <div class="grid-2">
                 <div class="stat">
-                    <div class="stat-label">Durchschnitt</div>
+                    <div class="stat-label">Durchschnitt Score</div>
                     <div class="stat-value" id="avgScore">—</div>
                 </div>
                 <div class="stat">
@@ -420,75 +120,66 @@
             </div>
         </div>
 
-        <!-- MAIN CARD -->
         <div class="card">
-            <!-- TABS -->
             <div class="tabs">
                 <button class="tab-btn active" onclick="switchTab('train')">Trainieren</button>
-                <button class="tab-btn" onclick="switchTab('prompt')">Prompt</button>
+                <button class="tab-btn" onclick="switchTab('prompt')">Prompt Code</button>
                 <button class="tab-btn" onclick="switchTab('history')">Historie</button>
             </div>
 
             <!-- TRAIN TAB -->
             <div id="train-tab" class="tab-content active">
-                <div class="card-title" style="margin-top: 20px;">
-                    <i class="fas fa-layer-group"></i> Schwierigkeitsstufe
-                </div>
+                <div class="card-title" style="margin-top: 20px;"><i class="fas fa-layer-group"></i> Schwierigkeitsstufe wählen</div>
                 <div class="level-grid">
-                    <button class="level-btn" onclick="selectLevel(1)">1<br><span style="font-size: 10px; opacity: 0.7;">Easy</span></button>
-                    <button class="level-btn" onclick="selectLevel(2)">2<br><span style="font-size: 10px; opacity: 0.7;">Medium</span></button>
-                    <button class="level-btn active" onclick="selectLevel(3)">3<br><span style="font-size: 10px; opacity: 0.7;">Hard</span></button>
-                    <button class="level-btn" onclick="selectLevel(4)">4<br><span style="font-size: 10px; opacity: 0.7;">Expert</span></button>
+                    <button class="level-btn" onclick="selectLevel(1)">1<br><span style="font-size: 10px; opacity: 0.7;">Anfänger</span></button>
+                    <button class="level-btn" onclick="selectLevel(2)">2<br><span style="font-size: 10px; opacity: 0.7;">Leicht</span></button>
+                    <button class="level-btn active" onclick="selectLevel(3)">3<br><span style="font-size: 10px; opacity: 0.7;">Normal</span></button>
+                    <button class="level-btn" onclick="selectLevel(4)">4<br><span style="font-size: 10px; opacity: 0.7;">Hart</span></button>
                     <button class="level-btn" onclick="selectLevel(5)">5<br><span style="font-size: 10px; opacity: 0.7;">Master</span></button>
                 </div>
 
-                <div class="card-title" style="margin-top: 28px;">
-                    <i class="fas fa-briefcase"></i> Diese Session
-                </div>
+                <div class="card-title" style="margin-top: 28px;"><i class="fas fa-user-tie"></i> Aktuelles Kundenprofil</div>
                 <div class="session-grid">
                     <div class="info-box">
-                        <div class="info-label">Programm</div>
+                        <div class="info-label">Produkt/Mandat</div>
                         <div class="info-value" id="sessionProgram">—</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-label">Kundentyp</div>
-                        <div class="info-value" id="sessionCustomer">—</div>
+                        <div class="info-label">Kunde</div>
+                        <div class="info-value" id="sessionCustomerName">—</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-label">Fokus</div>
-                        <div class="info-value" id="sessionFocus">—</div>
+                        <div class="info-label">DISC Typ</div>
+                        <div class="info-value" id="sessionCustomerType">—</div>
                     </div>
                 </div>
 
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="generateNewSession()">
-                        <i class="fas fa-sync"></i> Neue Session
+                        <i class="fas fa-sync"></i> Neuen Kunden laden
                     </button>
-                    <button class="btn btn-gemini" onclick="launchGemini()">
-                        <i class="fas fa-rocket"></i> Zu Gemini
+                    <button class="btn btn-gemini" onclick="copyPromptAndLaunch()">
+                        <i class="fas fa-rocket"></i> Simulation Starten (Gemini)
                     </button>
                 </div>
 
-                <div class="button-group">
-                    <button class="btn btn-secondary" onclick="copyPrompt()">
-                        <i class="fas fa-copy"></i> Prompt Kopieren
-                    </button>
+                <div class="button-group" style="margin-top: 10px;">
                     <button class="btn btn-primary" onclick="showRating()">
-                        <i class="fas fa-save"></i> Session Bewerten
+                        <i class="fas fa-save"></i> Eigene Bewertung speichern
                     </button>
                 </div>
 
                 <!-- RATING -->
                 <div id="ratingBox" class="rating-box">
-                    <div style="font-size: 14px; font-weight: 600; margin-bottom: 14px; color: #1f2937;">Wie war die Session?</div>
+                    <div style="font-size: 14px; font-weight: 600; margin-bottom: 14px; color: #1f2937;">Wie bewertest du deine Leistung?</div>
                     <div class="stars" id="starRating">
-                        <span class="star" onclick="rateSession(1)" style="cursor: pointer;">★</span>
-                        <span class="star" onclick="rateSession(2)" style="cursor: pointer;">★</span>
-                        <span class="star" onclick="rateSession(3)" style="cursor: pointer;">★</span>
-                        <span class="star" onclick="rateSession(4)" style="cursor: pointer;">★</span>
-                        <span class="star" onclick="rateSession(5)" style="cursor: pointer;">★</span>
+                        <span class="star" onclick="rateSession(1)">★</span>
+                        <span class="star" onclick="rateSession(2)">★</span>
+                        <span class="star" onclick="rateSession(3)">★</span>
+                        <span class="star" onclick="rateSession(4)">★</span>
+                        <span class="star" onclick="rateSession(5)">★</span>
                     </div>
-                    <textarea id="ratingNotes" placeholder="Notizen (optional)"></textarea>
+                    <textarea id="ratingNotes" placeholder="Notizen zur Session (optional)"></textarea>
                     <div class="button-group">
                         <button class="btn btn-secondary" onclick="cancelRating()">Abbrechen</button>
                         <button class="btn btn-primary" onclick="saveSession()">Speichern</button>
@@ -498,29 +189,22 @@
 
             <!-- PROMPT TAB -->
             <div id="prompt-tab" class="tab-content">
-                <div class="card-title" style="margin-top: 20px;">
-                    <i class="fas fa-code"></i> Gemini Prompt
-                </div>
-                <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Kopiere diesen Prompt in einen neuen Gemini Chat. Gemini wird warten bis du "START" eingibst.</p>
+                <div class="card-title" style="margin-top: 20px;"><i class="fas fa-code"></i> Generierter System-Prompt</div>
+                <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Dieser Text wird in die Zwischenablage kopiert. Füge ihn bei Gemini ein und starte den Voice Mode.</p>
                 <div class="prompt-box" id="promptDisplay"></div>
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="copyPrompt()">
-                        <i class="fas fa-copy"></i> Prompt Kopieren
-                    </button>
-                    <button class="btn btn-gemini" onclick="copyPromptAndLaunch()">
-                        <i class="fas fa-external-link-alt"></i> Zu Gemini
+                        <i class="fas fa-copy"></i> Nur Kopieren
                     </button>
                 </div>
             </div>
 
             <!-- HISTORY TAB -->
             <div id="history-tab" class="tab-content">
-                <div class="card-title" style="margin-top: 20px;">
-                    <i class="fas fa-history"></i> Session-Historie
-                </div>
+                <div class="card-title" style="margin-top: 20px;"><i class="fas fa-history"></i> Session-Historie</div>
                 <div id="sessionList">
                     <p style="color: #9ca3af; text-align: center; padding: 40px 20px; font-size: 13px;">
-                        Noch keine Sessions. Starte deine erste Trainingsession!
+                        Noch keine Sessions gespeichert.
                     </p>
                 </div>
             </div>
@@ -536,36 +220,79 @@
             { name: "Struktur & Steuer-Strategiemandat", price: "12.000 € brutto", duration: "Zeitlich flexibel" }
         ];
 
+        // Detaillierte Kundenprofile für mehr Realismus im Prompt
         const customers = [
-            { name: "Der Analytische Skeptiker", type: "45–55, akademisch" },
-            { name: "Der Emotional Unschlüssige", type: "35–48, Unternehmer" },
-            { name: "Der Dominante Forderer", type: "50–65, Owner" },
-            { name: "Der Sicherheitsorientierte Vorsichtige", type: "55–70, Beamter/Arzt" },
-            { name: "Der Budget-Bewusste Einsteiger", type: "30–42, Angestellte/r" }
+            { 
+                role: "Der Analytische Skeptiker", 
+                type: "🔵 BLAU (Gewissenhaft)", 
+                age: "48", 
+                profession: "Leitender IT-Architekt",
+                family: "Verheiratet, 2 Kinder",
+                income: "110.000 € p.a.",
+                assets: "70.000 € Tagesgeld, 120.000 € ETF Depot",
+                goal: "Maximale Steueroptimierung und sicherer ROI durch Daten-getriebene Strategie.",
+                pain: "Angst vor versteckten Kosten, unlogischen Konzepten und Kontrollverlust.",
+                objectionTheme: "Zweifelt an den Renditeberechnungen, vergleicht immer mit ETFs, hinterfragt das Steuermodell."
+            },
+            { 
+                role: "Der Emotional Unschlüssige", 
+                type: "🟢 GRÜN (Stetig)", 
+                age: "39", 
+                profession: "Klinik-Arzt (Angestellt)",
+                family: "Lebt in fester Partnerschaft",
+                income: "95.000 € p.a.",
+                assets: "50.000 € Sparkonto",
+                goal: "Sichere Vermögensanlage ohne Stress, will ein 'Rundum-Sorglos-Paket'.",
+                pain: "Angst vor Fehlentscheidungen, extremer Zeitmangel durch Schichtdienst, braucht das 'Go' vom Partner.",
+                objectionTheme: "Muss sich rückversichern, fürchtet das Risiko von Mietausfall, schiebt Entscheidungen auf."
+            },
+            { 
+                role: "Der Dominante Forderer", 
+                type: "🔴 ROT (Dominant)", 
+                age: "55", 
+                profession: "Inhaber einer Mittelstands-GmbH",
+                family: "Geschieden",
+                income: "250.000 € p.a.",
+                assets: "GmbH Werte + 400.000 € Cash",
+                goal: "Exklusive Deals mit hohem Hebel, will Status und schnelles Vorankommen.",
+                pain: "Hasst Zeitverschwendung, glaubt, er kann alles selbst besser, zahlt ungern 'Berater-Honorare'.",
+                objectionTheme: "Greift den Preis aggressiv an, fordert Sonderkonditionen, testet die Kompetenz des Verkäufers hart."
+            },
+            { 
+                role: "Der Sicherheitsorientierte Vorsichtige", 
+                type: "🟣 LILA/GRÜN (Vorsichtig)", 
+                age: "62", 
+                profession: "Verbeamteter Gymnasiallehrer",
+                family: "Verheiratet, Kinder aus dem Haus",
+                income: "85.000 € p.a.",
+                assets: "Abbezahltes Eigenheim, 150.000 € Bausparer",
+                goal: "Kapitalschutz vor Inflation, garantierte Zusatzrente.",
+                pain: "Panik vor Zinsänderungen, Angst vor Mieter-Stress (Messies), starkes Sicherheitsbedürfnis.",
+                objectionTheme: "Hinterfragt Sanierungskosten, makroökonomische Lage (Zinsen/Krieg) und sucht 100% Garantien."
+            },
+            { 
+                role: "Der Budget-Bewusste Einsteiger", 
+                type: "🟡 GELB (Initiativ)", 
+                age: "31", 
+                profession: "Marketing Manager",
+                family: "Single",
+                income: "65.000 € p.a.",
+                assets: "25.000 € Cash, 10.000 € Krypto",
+                goal: "Erste Immobilie als Hebel für Reichtum, träumt von finanzieller Freiheit.",
+                pain: "Zu wenig Eigenkapital, Angst sich zu übernehmen, lässt sich leicht von Social Media irritieren.",
+                objectionTheme: "Die Monatsrate macht Angst, fragt nach 'kleineren' Lösungen, will schnell reich werden aber hat wenig Mittel."
+            }
         ];
 
-        const fiktiveNamen = [
-            "Thomas Hoffmann", "Sandra Müller", "Klaus Weber", "Petra Schmidt", "Martin Krämer",
-            "Julia Richter", "Hans Steiner", "Birgit Schneider", "Werner Beck", "Andrea Krause"
-        ];
-
-        const objections = {
-            "Der Analytische Skeptiker": ["Das klingt zu schön um wahr zu sein", "Warum nicht einfach ETFs?", "Ich verstehe die Steuerlogik nicht", "Wie rechnet ihr die Rendite?", "Die Zahlen passen nicht zusammen"],
-            "Der Emotional Unschlüssige": ["Ich muss mit meinem Partner sprechen", "Das ist mir zu riskant", "Ich brauche Zeit zum Überlegen", "Ich bin mir unsicher", "Zu viele Optionen"],
-            "Der Dominante Forderer": ["Warum Ihre Objekte?", "Der Preis ist zu hoch", "Ich kann das besser", "Geben Sie mir einen besseren Deal", "Andere sind günstiger"],
-            "Der Sicherheitsorientierte Vorsichtige": ["Was bei Mieterausfall?", "Die Zinsen sind zu hoch", "Ich glaube nicht dran", "Wer haftet für Sanierungen?", "Ist das der richtige Zeitpunkt?"],
-            "Der Budget-Bewusste Einsteiger": ["Nicht genug Eigenkapital", "Zu viel auf einmal", "Kann ich kleiner starten?", "Die Monatsrate ist zu hoch", "Lieber warten"]
-        };
+        const fiktiveNamen = ["Thomas Hoffmann", "Sandra Müller", "Klaus Weber", "Petra Schmidt", "Martin Krämer", "Julia Richter", "Hans Steiner", "Birgit Schneider"];
 
         let currentLevel = 3;
         let currentProgram, currentCustomer, generatedPrompt;
-        let sessions = JSON.parse(localStorage.getItem('bauer_sessions')) || [];
+        let sessions = JSON.parse(localStorage.getItem('bauer_sessions_v2')) || [];
         let currentRating = 0;
-        let fiktiveName = "";
+        let currentName = "";
 
-        function random(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
+        function random(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
         function init() {
             generateNewSession();
@@ -576,113 +303,85 @@
         function generateNewSession() {
             currentProgram = random(programs);
             currentCustomer = random(customers);
-            fiktiveName = random(fiktiveNamen);
+            currentName = random(fiktiveNamen);
 
             document.getElementById('sessionProgram').textContent = currentProgram.name;
-            document.getElementById('sessionCustomer').textContent = currentCustomer.name;
-            document.getElementById('sessionFocus').textContent = `Level ${currentLevel}`;
+            document.getElementById('sessionCustomerName').textContent = currentName;
+            document.getElementById('sessionCustomerType').textContent = currentCustomer.type;
 
             generatePrompt();
             updatePromptDisplay();
         }
 
         function generatePrompt() {
-            const getCustomerType = (name) => {
-                const types = {
-                    "Der Analytische Skeptiker": "🔵 BLAU | Rational, datengetrieben, hinterfragt alles",
-                    "Der Emotional Unschlüssige": "🟢 GRÜN | Gefühlsorientiert, unschlüssig, braucht Sicherheit",
-                    "Der Dominante Forderer": "🔴 ROT | Dominant, direkt, will beste Deals",
-                    "Der Sicherheitsorientierte Vorsichtige": "🟣 LILA | Vorsichtig, risikobewusst, braucht Garantien",
-                    "Der Budget-Bewusste Einsteiger": "🟡 GELB | Budget-fokussiert, praktisch, will Kleinanfang"
-                };
-                return types[name] || "Typ unbekannt";
-            };
+            // Level dynamics logic
+            let stressLevel = "";
+            if(currentLevel <= 2) stressLevel = "Du bist freundlich, verzeihst kleine Fehler und lässt dich relativ leicht durch logische Argumente überzeugen.";
+            else if(currentLevel == 3) stressLevel = "Du bist realistisch. Du forderst den Verkäufer, brauchst gute Argumente, bist aber bei echter Kompetenz offen.";
+            else if(currentLevel == 4) stressLevel = "Du bist sehr kritisch. Du hinterfragst Aussagen sofort. Wenn der Verkäufer zögert, bohrst du nach.";
+            else if(currentLevel == 5) stressLevel = "Du bist extrem hartnäckig und leicht genervt. Du unterbrichst auch mal (verbal) und testest den Verkäufer bis ans Äußerste. Standard-Sprüche prallen an dir ab.";
 
-            const getCustomerGoal = (name) => {
-                const goals = {
-                    "Der Analytische Skeptiker": "Optimale Rendite mit nachvollziehbarer Strategie",
-                    "Der Emotional Unschlüssige": "Sichere Vermögensanlage ohne Stress",
-                    "Der Dominante Forderer": "Exklusive Deals mit hohem ROI",
-                    "Der Sicherheitsorientierte Vorsichtige": "Kapitalschutz & garantierte Rendite",
-                    "Der Budget-Bewusste Einsteiger": "Einstieg in Immobilien mit kleinem Budget"
-                };
-                return goals[name] || "Ziel unbekannt";
-            };
+            generatedPrompt = `**[SYSTEM PROMPT - BAUER SALES COACHING SIMULATOR V2]**
 
-            const getCustomerProblem = (name) => {
-                const problems = {
-                    "Der Analytische Skeptiker": "Zu viel Info, zu viele Fragen, nicht überzeugt",
-                    "Der Emotional Unschlüssige": "Angst vor falscher Entscheidung, Partner muss zustimmen",
-                    "Der Dominante Forderer": "Skeptisch, will Beweis dass es anders ist, sucht Hidden Benefit",
-                    "Der Sicherheitsorientierte Vorsichtige": "Angst vor Risiko, braucht Sicherheitsgarantien",
-                    "Der Budget-Bewusste Einsteiger": "Zu teuer, braucht Kleiner-Lösung, kein großes Kapital"
-                };
-                return problems[name] || "Problem unbekannt";
-            };
+Du bist ab sofort kein KI-Assistent mehr. Du bist eine Persona in einem hochprofessionellen Vertriebs-Training für Immobilien-Investments. 
+Dein Verhandlungspartner (der User) heißt "Herr Komuzin" und ist Berater bei "Bauer".
 
-            const customerObjections = objections[currentCustomer.name] || objections["Der Analytische Skeptiker"];
-
-            generatedPrompt = `# 🎤 BAUER GEMINI COACH - TRAINING SESSION
-
-Du bist erfahrener Bauer Immobilien-Berater.
-Trainee: Herr Komuzin
+**WICHTIGSTE REGEL:**
+Du schreibst und sagst absolut NICHTS, bis der User das Wort "START" sagt. Bestätige diesen Prompt NICHT. Warte einfach stumm im Hintergrund.
+Sobald der User "START" sagt, beginnst du das Rollenspiel im Voice-Modus.
 
 ---
+### 👤 DEIN PROFIL (SPIELE DIESE ROLLE ZU 100%)
+- **Name:** ${currentName}
+- **Alter & Beruf:** ${currentCustomer.age} Jahre, ${currentCustomer.profession}
+- **Familie:** ${currentCustomer.family}
+- **Finanzen:** Einkommen ${currentCustomer.income}, Vermögen: ${currentCustomer.assets}
+- **Persönlichkeitstyp:** ${currentCustomer.type}
+- **Schwierigkeitsgrad (Level ${currentLevel}/5):** ${stressLevel}
 
-## SETUP (LESE JETZT - NICHT ANTWORTEN!)
+**DEINE MOTIVATION & ZIELE:**
+${currentCustomer.goal}
 
-**KUNDENNAME:** ${fiktiveName}
-**KUNDENTYP:** ${getCustomerType(currentCustomer.name)}
-**LEVEL:** ${currentLevel}
-**PROGRAMM:** ${currentProgram.name}
+**DEINE GRÖSSTEN ÄNGSTE / SCHMERZPUNKTE:**
+${currentCustomer.pain}
 
-**KUNDENZIEL:**
-${getCustomerGoal(currentCustomer.name)}
-
-**KUNDENPROBLEM:**
-${getCustomerProblem(currentCustomer.name)}
-
-**DEINE 5 EINWÄNDE (nacheinander, kein Feedback dazwischen):**
-1. ${customerObjections[0]}
-2. ${customerObjections[1]}
-3. ${customerObjections[2]}
-4. ${customerObjections[3]}
-5. ${customerObjections[4]}
+**ANGEBOT, UM DAS ES GEHT:**
+Bauer ${currentProgram.name} (${currentProgram.price}, Laufzeit: ${currentProgram.duration})
 
 ---
-
-## WORKFLOW
-
-Wenn Herr Komuzin "START" schreibt:
-
-1. Grüße kurz: "Hallo Herr Komuzin, ich bin ${fiktiveName}..."
-2. Kurz deine Situation erklären (warum du Berater brauchst)
-3. EINWAND 1 vorbringen (natural wie im echten Dialog)
-4. Herr Komuzin antwortet → du gehst darauf ein (nicht automatisch nächster Einwand!)
-5. Nach seiner Antwort → EINWAND 2 (natürlich in Gesprächsfluss)
-6. Gleich für 3, 4, 5
-
-**NACH EINWAND 5 ANTWORTET HERR KOMUZIN NOCH EINMAL** → DANN schreibt er "FEEDBACK"
-
-Wenn Herr Komuzin "FEEDBACK" schreibt:
-- Kurz zusammenfassen wie das Gespräch lief
-- Seine Stärken (konkrete Beispiele)
-- Seine Schwächen (konkrete Beispiele)
-- 1-2 konkrete Tipps für nächstes Mal
+### 🧠 VERHALTENSREGELN FÜR DIE GESPRÄCHSFÜHRUNG
+1. **Menschlich & Natürlich:** Klinge wie ein echter Mensch am Telefon. Verwende Füllwörter ("Ähm", "Naja", "Puh"). Mach Pausen. 
+2. **Keine Monologe:** Antworte kurz und prägnant (max. 2-3 Sätze pro Antwort). Lass den Verkäufer arbeiten!
+3. **Organische Einwände:** Spule nicht einfach eine Liste ab. Bringe Einwände basierend auf der Richtung des Gesprächs. 
+   - Dein Kern-Fokus für Einwände ist: *${currentCustomer.objectionTheme}*
+   - Wenn der Verkäufer logisch argumentiert und auf deine Emotion (Angst/Skeptis) eingeht, gib etwas nach.
+   - Wenn der Verkäufer Standard-Phrasen nutzt, blocke ab.
+4. **Kein KI-Break:** Verlasse niemals deine Rolle. Sage niemals "Als KI...", bewerte das Gespräch NICHT mittendrin. 
 
 ---
-
-## WICHTIG!
-
-✅ DIALOG IST NATÜRLICH - du gehst auf seine Antworten ein
-✅ KEINE UNTERBRECHUNGEN - du stellst nicht automatisch den nächsten Einwand
-✅ KEIN SCORING dazwischen - nur am Ende nach FEEDBACK
-✅ FLÜSSIGES GESPRÄCH - wie ein echtes Telefonat
-✅ DU NIMMST SEINE ARGUMENTE ERNST - bist nicht robotisch
+### 🎬 ABLAUF DER SIMULATION
+1. **Nach "START":** Du eröffnest das Gespräch so: "Guten Tag Herr Komuzin, hier ist ${currentName}. Wir hatten ja den Termin vereinbart... Ehrlich gesagt bin ich noch etwas skeptisch, weil [nenne deinen Schmerzpunkt]. Wie genau können Sie mir da weiterhelfen?"
+2. **Ping-Pong:** Reagiere immer auf das, was Herr Komuzin sagt. Baue im Laufe des Gesprächs ca. 3 bis 5 harte Einwände ein, die zu deinem Kundenprofil passen.
+3. **Abbruch-Wort:** Das Gespräch läuft solange, bis der User das Wort "FEEDBACK" sagt.
 
 ---
+### 📊 FEEDBACK-MODUS (ERST BEI DEM WORT "FEEDBACK")
+Wenn Herr Komuzin "FEEDBACK" sagt, beendest du sofort die Rolle von ${currentName}.
+Schlüpfe in die Rolle eines "Senior Sales Directors" und analysiere die Leistung hart, aber fair.
 
-**BEREIT? DANN: START**`;
+Gib eine Bewertung nach folgendem Muster (Nutze Markdown zur Strukturierung):
+1. **Gesamt-Score:** [0-100 Punkte]
+2. **Kategorien-Bewertung (je max. 10 Pkt):**
+   - Gesprächseröffnung & Bedarfsermittlung
+   - Fragetechnik & Empathie
+   - Argumentation & Einwandbehandlung
+   - Abschluss-Orientierung
+   - Souveränität & Natürlichkeit
+3. **Die 3 stärksten Momente:** (Zitiere konkret aus dem Gespräch)
+4. **Die 3 größten Fehler/Auslassungen:** (Sei hier extrem präzise)
+5. **Konkrete Handlungsanweisungen für das nächste Mal:** (2-3 Sätze, was genau besser gemacht werden muss).
+
+**BEREIT? WARTE NUN STUMM AUF DAS WORT: START**`;
         }
 
         function updatePromptDisplay() {
@@ -703,12 +402,10 @@ Wenn Herr Komuzin "FEEDBACK" schreibt:
 
         function copyPromptAndLaunch() {
             navigator.clipboard.writeText(generatedPrompt);
-            showFeedback('✓ Prompt kopiert! Gemini öffnet sich...');
-            setTimeout(() => launchGemini(), 600);
-        }
-
-        function launchGemini() {
-            window.open('https://gemini.google.com/', '_blank');
+            showFeedback('✓ Prompt kopiert! Öffne Gemini...');
+            setTimeout(() => {
+                window.open('https://gemini.google.com/', '_blank');
+            }, 800);
         }
 
         function switchTab(tab) {
@@ -731,7 +428,7 @@ Wenn Herr Komuzin "FEEDBACK" schreibt:
 
         function saveSession() {
             if (currentRating === 0) {
-                alert('Bitte Sterne wählen!');
+                alert('Bitte wähle eine Sterne-Bewertung aus.');
                 return;
             }
 
@@ -739,13 +436,13 @@ Wenn Herr Komuzin "FEEDBACK" schreibt:
                 date: new Date().toLocaleString('de-DE'),
                 level: currentLevel,
                 program: currentProgram.name,
-                customer: currentCustomer.name,
+                customer: currentName + " (" + currentCustomer.role + ")",
                 score: currentRating,
                 notes: document.getElementById('ratingNotes').value
             };
 
             sessions.push(session);
-            localStorage.setItem('bauer_sessions', JSON.stringify(sessions));
+            localStorage.setItem('bauer_sessions_v2', JSON.stringify(sessions));
 
             document.getElementById('ratingNotes').value = '';
             currentRating = 0;
@@ -775,7 +472,7 @@ Wenn Herr Komuzin "FEEDBACK" schreibt:
             }
 
             const avg = sessions.reduce((a, b) => a + b.score, 0) / sessions.length;
-            document.getElementById('avgScore').textContent = avg.toFixed(1);
+            document.getElementById('avgScore').textContent = avg.toFixed(1) + " / 5";
         }
 
         function updateHistory() {
@@ -783,7 +480,11 @@ Wenn Herr Komuzin "FEEDBACK" schreibt:
 
             const html = sessions.slice().reverse().slice(0, 20).map(s => `
                 <div class="session-item">
-                    <div class="session-info">${s.date.split(',')[0]}<br><strong>${s.program}</strong> • ${s.customer}</div>
+                    <div class="session-info">
+                        <span style="color: #6b7280; font-size: 11px;">${s.date.split(',')[0]} - Level ${s.level}</span><br>
+                        <strong>${s.customer}</strong><br>
+                        <span style="font-size: 12px;">${s.program}</span>
+                    </div>
                     <div class="session-score">⭐ ${s.score}/5</div>
                 </div>
             `).join('');
@@ -796,7 +497,7 @@ Wenn Herr Komuzin "FEEDBACK" schreibt:
             toast.className = 'feedback-toast';
             toast.textContent = msg;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2000);
+            setTimeout(() => toast.remove(), 2500);
         }
 
         window.addEventListener('load', init);
