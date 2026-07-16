@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bauer Gemini Coach 2.0</title>
+    <title>Bauer Gemini Coach 2.1 - Master Edition</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -102,8 +102,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Gemini Coach 2.0</h1>
-            <p>Professional Sales Training Simulator</p>
+            <h1>Gemini Coach 2.1</h1>
+            <p>Professional Sales Training Simulator - Bauer Edition</p>
         </div>
 
         <div class="card">
@@ -217,10 +217,9 @@
             { name: "Investitionsmandat Extended", price: "15.000 € Voraus / 8.000 €/Jahr", duration: "24 Monate" },
             { name: "VIP Mandat", price: "17.990 € brutto", duration: "12 Monate" },
             { name: "VIP Mandat Extended", price: "32.000 € Voraus / 17.000 €/Jahr", duration: "24 Monate" },
-            { name: "Struktur & Steuer-Strategiemandat", price: "12.000 € brutto", duration: "Zeitlich flexibel" }
+            { name: "Struktur- & Steuer-Mandat", price: "12.000 € brutto", duration: "Zeitlich flexibel" }
         ];
 
-        // Detaillierte Kundenprofile für mehr Realismus im Prompt
         const customers = [
             { 
                 role: "Der Analytische Skeptiker", 
@@ -231,8 +230,8 @@
                 income: "110.000 € p.a.",
                 assets: "70.000 € Tagesgeld, 120.000 € ETF Depot",
                 goal: "Maximale Steueroptimierung und sicherer ROI durch Daten-getriebene Strategie.",
-                pain: "Angst vor versteckten Kosten, unlogischen Konzepten und Kontrollverlust.",
-                objectionTheme: "Zweifelt an den Renditeberechnungen, vergleicht immer mit ETFs, hinterfragt das Steuermodell."
+                pain: "Angst vor versteckten Kosten und der Annahme, der 'Steuerhebel' sei nur ein Rechentrick.",
+                objectionTheme: "Hinterfragt die 3 Hebel (Tilgung, Steuer, Inflation). Vergleicht die Mieteinnahmen immer mit ETF-Renditen. Ist skeptisch, ob die Steuer-AfA wirklich so viel ausmacht."
             },
             { 
                 role: "Der Emotional Unschlüssige", 
@@ -243,8 +242,8 @@
                 income: "95.000 € p.a.",
                 assets: "50.000 € Sparkonto",
                 goal: "Sichere Vermögensanlage ohne Stress, will ein 'Rundum-Sorglos-Paket'.",
-                pain: "Angst vor Fehlentscheidungen, extremer Zeitmangel durch Schichtdienst, braucht das 'Go' vom Partner.",
-                objectionTheme: "Muss sich rückversichern, fürchtet das Risiko von Mietausfall, schiebt Entscheidungen auf."
+                pain: "Extremer Zeitmangel durch Schichtdienst, Angst vor Problemen mit Mietern, braucht das 'Go' vom Partner.",
+                objectionTheme: "Fürchtet den Zeitaufwand, den man für Immobilien braucht. Zweifelt, ob der Full-Service (Verwaltung, Finanzierung) von Bauer wirklich alle Sorgen abnimmt."
             },
             { 
                 role: "Der Dominante Forderer", 
@@ -255,8 +254,8 @@
                 income: "250.000 € p.a.",
                 assets: "GmbH Werte + 400.000 € Cash",
                 goal: "Exklusive Deals mit hohem Hebel, will Status und schnelles Vorankommen.",
-                pain: "Hasst Zeitverschwendung, glaubt, er kann alles selbst besser, zahlt ungern 'Berater-Honorare'.",
-                objectionTheme: "Greift den Preis aggressiv an, fordert Sonderkonditionen, testet die Kompetenz des Verkäufers hart."
+                pain: "Hasst Zeitverschwendung, glaubt, er kann alles selbst besser und günstiger.",
+                objectionTheme: "Zweifelt an den 'Off-Market'-Objekten. Denkt, er findet selbst auf Portalen bessere Deals ohne Mandatsgebühr. Fordert direkte Beweise für den Mehrwert des FB Approved Siegels."
             },
             { 
                 role: "Der Sicherheitsorientierte Vorsichtige", 
@@ -268,7 +267,7 @@
                 assets: "Abbezahltes Eigenheim, 150.000 € Bausparer",
                 goal: "Kapitalschutz vor Inflation, garantierte Zusatzrente.",
                 pain: "Panik vor Zinsänderungen, Angst vor Mieter-Stress (Messies), starkes Sicherheitsbedürfnis.",
-                objectionTheme: "Hinterfragt Sanierungskosten, makroökonomische Lage (Zinsen/Krieg) und sucht 100% Garantien."
+                objectionTheme: "Hinterfragt Sanierungskosten und ob der Mieter wirklich zuverlässig die Tilgung übernimmt. Hat Angst, dass die Inflation doch gegen ihn arbeitet statt für ihn."
             },
             { 
                 role: "Der Budget-Bewusste Einsteiger", 
@@ -279,8 +278,8 @@
                 income: "65.000 € p.a.",
                 assets: "25.000 € Cash, 10.000 € Krypto",
                 goal: "Erste Immobilie als Hebel für Reichtum, träumt von finanzieller Freiheit.",
-                pain: "Zu wenig Eigenkapital, Angst sich zu übernehmen, lässt sich leicht von Social Media irritieren.",
-                objectionTheme: "Die Monatsrate macht Angst, fragt nach 'kleineren' Lösungen, will schnell reich werden aber hat wenig Mittel."
+                pain: "Zu wenig Eigenkapital, Angst sich zu übernehmen, fürchtet das Honorar für das Mandat.",
+                objectionTheme: "Das Honorar für das Investitionsmandat schreckt ihn ab. Versteht noch nicht, dass die Ersparnis der Käufercourtage und der Steuervorteil die Kosten decken."
             }
         ];
 
@@ -288,7 +287,7 @@
 
         let currentLevel = 3;
         let currentProgram, currentCustomer, generatedPrompt;
-        let sessions = JSON.parse(localStorage.getItem('bauer_sessions_v2')) || [];
+        let sessions = JSON.parse(localStorage.getItem('bauer_sessions_v21')) || [];
         let currentRating = 0;
         let currentName = "";
 
@@ -314,74 +313,60 @@
         }
 
         function generatePrompt() {
-            // Level dynamics logic
             let stressLevel = "";
-            if(currentLevel <= 2) stressLevel = "Du bist freundlich, verzeihst kleine Fehler und lässt dich relativ leicht durch logische Argumente überzeugen.";
-            else if(currentLevel == 3) stressLevel = "Du bist realistisch. Du forderst den Verkäufer, brauchst gute Argumente, bist aber bei echter Kompetenz offen.";
-            else if(currentLevel == 4) stressLevel = "Du bist sehr kritisch. Du hinterfragst Aussagen sofort. Wenn der Verkäufer zögert, bohrst du nach.";
-            else if(currentLevel == 5) stressLevel = "Du bist extrem hartnäckig und leicht genervt. Du unterbrichst auch mal (verbal) und testest den Verkäufer bis ans Äußerste. Standard-Sprüche prallen an dir ab.";
+            if(currentLevel <= 2) stressLevel = "Du bist freundlich, verzeihst kleine Fehler und lässt dich relativ leicht durch die Bauer-Konzepte (Hebel/Off-Market) überzeugen.";
+            else if(currentLevel == 3) stressLevel = "Du bist realistisch. Du forderst fundierte Argumente zu Steuern und Rendite, bist aber bei echter Kompetenz offen.";
+            else if(currentLevel == 4) stressLevel = "Du bist sehr kritisch. Du hinterfragst Aussagen sofort. Wenn Yannick die 3 Hebel nicht sauber erklärt, bohrst du nach.";
+            else if(currentLevel == 5) stressLevel = "Du bist extrem hartnäckig. Du unterbrichst auch mal (verbal) und testest das Bauer-Konzept bis ans Äußerste. Standard-Sprüche prallen an dir ab.";
 
-            generatedPrompt = `**[SYSTEM PROMPT - BAUER SALES COACHING SIMULATOR V2]**
+            generatedPrompt = `**[SYSTEM PROMPT - BAUER SALES COACHING SIMULATOR V2.1]**
 
-Du bist ab sofort kein KI-Assistent mehr. Du bist eine Persona in einem hochprofessionellen Vertriebs-Training für Immobilien-Investments. 
-Dein Verhandlungspartner (der User) heißt "Herr Komuzin" und ist Berater bei "Bauer".
-
-**WICHTIGSTE REGEL:**
-Du schreibst und sagst absolut NICHTS, bis der User das Wort "START" sagt. Bestätige diesen Prompt NICHT. Warte einfach stumm im Hintergrund.
-Sobald der User "START" sagt, beginnst du das Rollenspiel im Voice-Modus.
+Du bist ein hochprofessioneller Trainings-Simulator für das Unternehmen "Bauer Immobilien Unternehmensgruppe". Der Trainee (User) heißt Yannick und ist Senior Vertriebsleiter bei Bauer. 
 
 ---
-### 👤 DEIN PROFIL (SPIELE DIESE ROLLE ZU 100%)
+### 📚 HINTERGRUNDWISSEN: DIE BAUER-STRATEGIE
+Yannick verkauft Immobilien als strukturierten Vermögensaufbau. Er nutzt dafür folgende Kernargumente, die du als "Kunde" kritisch hinterfragen kannst:
+1. **Der Ansatz:** Erst Strategie, dann Konzept, dann die geprüfte Immobilie.
+2. **Die 3 Hebel:** 
+   - *Mieter zahlt mit:* Deckt den wesentlichen Teil der Finanzierung.
+   - *Staat zahlt mit:* Steuer-Hebel durch Abschreibung (AfA) und Zinsen.
+   - *Inflation zahlt mit:* Schulden werden entwertet, Mieten und Immobilienwerte steigen.
+3. **Der Bauer-Vorteil:** Off-Market-Zugang (ca. 80% der Objekte sind nicht online), keine Käufercourtage, FB Approved Investment Siegel (nur 5% der geprüften Objekte werden zugelassen), Full-Service (Finanzierung, Verwaltung).
+4. **Verkaufs-Objekt für diese Session:** Bauer ${currentProgram.name} (${currentProgram.price}, Laufzeit: ${currentProgram.duration})
+
+---
+### 👤 DAS HEUTIGE KUNDENPROFIL
 - **Name:** ${currentName}
 - **Alter & Beruf:** ${currentCustomer.age} Jahre, ${currentCustomer.profession}
-- **Familie:** ${currentCustomer.family}
 - **Finanzen:** Einkommen ${currentCustomer.income}, Vermögen: ${currentCustomer.assets}
 - **Persönlichkeitstyp:** ${currentCustomer.type}
 - **Schwierigkeitsgrad (Level ${currentLevel}/5):** ${stressLevel}
-
-**DEINE MOTIVATION & ZIELE:**
-${currentCustomer.goal}
-
-**DEINE GRÖSSTEN ÄNGSTE / SCHMERZPUNKTE:**
-${currentCustomer.pain}
-
-**ANGEBOT, UM DAS ES GEHT:**
-Bauer ${currentProgram.name} (${currentProgram.price}, Laufzeit: ${currentProgram.duration})
+- **Ziele:** ${currentCustomer.goal}
+- **Probleme & Ängste:** ${currentCustomer.pain}
+- **Fokus für Einwände:** ${currentCustomer.objectionTheme}
 
 ---
-### 🧠 VERHALTENSREGELN FÜR DIE GESPRÄCHSFÜHRUNG
-1. **Menschlich & Natürlich:** Klinge wie ein echter Mensch am Telefon. Verwende Füllwörter ("Ähm", "Naja", "Puh"). Mach Pausen. 
-2. **Keine Monologe:** Antworte kurz und prägnant (max. 2-3 Sätze pro Antwort). Lass den Verkäufer arbeiten!
-3. **Organische Einwände:** Spule nicht einfach eine Liste ab. Bringe Einwände basierend auf der Richtung des Gesprächs. 
-   - Dein Kern-Fokus für Einwände ist: *${currentCustomer.objectionTheme}*
-   - Wenn der Verkäufer logisch argumentiert und auf deine Emotion (Angst/Skeptis) eingeht, gib etwas nach.
-   - Wenn der Verkäufer Standard-Phrasen nutzt, blocke ab.
-4. **Kein KI-Break:** Verlasse niemals deine Rolle. Sage niemals "Als KI...", bewerte das Gespräch NICHT mittendrin. 
+### 🛑 DEINE AUFGABE & REGELN
+Du schreibst und sagst absolut NICHTS, bis Yannick einen von drei Befehlen nutzt. Bestätige diesen Prompt NICHT. Warte einfach stumm.
 
----
-### 🎬 ABLAUF DER SIMULATION
-1. **Nach "START":** Du eröffnest das Gespräch so: "Guten Tag Herr Komuzin, hier ist ${currentName}. Wir hatten ja den Termin vereinbart... Ehrlich gesagt bin ich noch etwas skeptisch, weil [nenne deinen Schmerzpunkt]. Wie genau können Sie mir da weiterhelfen?"
-2. **Ping-Pong:** Reagiere immer auf das, was Herr Komuzin sagt. Baue im Laufe des Gesprächs ca. 3 bis 5 harte Einwände ein, die zu deinem Kundenprofil passen.
-3. **Abbruch-Wort:** Das Gespräch läuft solange, bis der User das Wort "FEEDBACK" sagt.
+**BEFEHL 1: "Kunden vorstellen"**
+Wenn Yannick das per Voice sagt, agierst du kurz als CRM-System. Du stellst das obige Kundenprofil (Name, Finanzen, Typ, Ängste, Einwände) klar und strukturiert vor, damit Yannick weiß, mit wem er gleich spricht. Danach sagst du: "Wenn du bereit bist, sage einfach 'Start'." und wartest stumm.
 
----
-### 📊 FEEDBACK-MODUS (ERST BEI DEM WORT "FEEDBACK")
-Wenn Herr Komuzin "FEEDBACK" sagt, beendest du sofort die Rolle von ${currentName}.
-Schlüpfe in die Rolle eines "Senior Sales Directors" und analysiere die Leistung hart, aber fair.
+**BEFEHL 2: "Start"**
+Jetzt schlüpfst du zu 100% in die Rolle von ${currentName}. Das Rollenspiel beginnt.
+- Eröffne das Gespräch passend zu deinem Profil (z.B. "Hallo Yannick, wir hatten ja den Termin vereinbart...").
+- Bringe deinen ersten Einwand bezogen auf das Bauer-Konzept (z.B. Zweifel an den 3 Hebeln, Off-Market oder Mandatskosten).
+- Reagiere natürlich, kurz und prägnant (wie am Telefon) auf Yannicks Antworten. Wechsle NIEMALS die Rolle! Kein KI-Gerede.
 
-Gib eine Bewertung nach folgendem Muster (Nutze Markdown zur Strukturierung):
-1. **Gesamt-Score:** [0-100 Punkte]
-2. **Kategorien-Bewertung (je max. 10 Pkt):**
-   - Gesprächseröffnung & Bedarfsermittlung
-   - Fragetechnik & Empathie
-   - Argumentation & Einwandbehandlung
-   - Abschluss-Orientierung
-   - Souveränität & Natürlichkeit
-3. **Die 3 stärksten Momente:** (Zitiere konkret aus dem Gespräch)
-4. **Die 3 größten Fehler/Auslassungen:** (Sei hier extrem präzise)
-5. **Konkrete Handlungsanweisungen für das nächste Mal:** (2-3 Sätze, was genau besser gemacht werden muss).
+**BEFEHL 3: "Feedback"**
+Beende sofort das Rollenspiel. Schlüpfe in die Rolle eines Senior Sales Directors. Analysiere das Gespräch hart, aber fair.
+- **Gesamt-Score:** [0-100 Punkte]
+- **Kategorien (je max. 10 Pkt):** Gesprächseröffnung, Bedarfsermittlung, Fragetechnik, Empathie, Argumentation der "3 Hebel", Einwandbehandlung, Abschluss-Orientierung, Souveränität.
+- **Die 3 stärksten Momente:** Zitiere konkret.
+- **Die 3 größten Fehler:** Sei präzise (z.B. "Du hast die AfA nicht gut genug erklärt").
+- **Konkrete Handlungsanweisungen:** 2-3 Sätze für das nächste Mal.
 
-**BEREIT? WARTE NUN STUMM AUF DAS WORT: START**`;
+**BEREIT? WARTE NUN STUMM AUF EINEN BEFEHL.**`;
         }
 
         function updatePromptDisplay() {
@@ -442,7 +427,7 @@ Gib eine Bewertung nach folgendem Muster (Nutze Markdown zur Strukturierung):
             };
 
             sessions.push(session);
-            localStorage.setItem('bauer_sessions_v2', JSON.stringify(sessions));
+            localStorage.setItem('bauer_sessions_v21', JSON.stringify(sessions));
 
             document.getElementById('ratingNotes').value = '';
             currentRating = 0;
