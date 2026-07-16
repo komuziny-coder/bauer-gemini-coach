@@ -587,47 +587,102 @@
         }
 
         function generatePrompt() {
-            const customerObjections = objections[currentCustomer.name] || objections["Der Analytische Skeptiker"];
-            const selectedObjection = random(customerObjections);
+            const getCustomerType = (name) => {
+                const types = {
+                    "Der Analytische Skeptiker": "🔵 BLAU | Rational, datengetrieben, hinterfragt alles",
+                    "Der Emotional Unschlüssige": "🟢 GRÜN | Gefühlsorientiert, unschlüssig, braucht Sicherheit",
+                    "Der Dominante Forderer": "🔴 ROT | Dominant, direkt, will beste Deals",
+                    "Der Sicherheitsorientierte Vorsichtige": "🟣 LILA | Vorsichtig, risikobewusst, braucht Garantien",
+                    "Der Budget-Bewusste Einsteiger": "🟡 GELB | Budget-fokussiert, praktisch, will Kleinanfang"
+                };
+                return types[name] || "Typ unbekannt";
+            };
 
-            generatedPrompt = `# 🎤 BAUER GEMINI COACH - TRAINING
+            const getCustomerGoal = (name) => {
+                const goals = {
+                    "Der Analytische Skeptiker": "Optimale Rendite mit nachvollziehbarer Strategie",
+                    "Der Emotional Unschlüssige": "Sichere Vermögensanlage ohne Stress",
+                    "Der Dominante Forderer": "Exklusive Deals mit hohem ROI",
+                    "Der Sicherheitsorientierte Vorsichtige": "Kapitalschutz & garantierte Rendite",
+                    "Der Budget-Bewusste Einsteiger": "Einstieg in Immobilien mit kleinem Budget"
+                };
+                return goals[name] || "Ziel unbekannt";
+            };
+
+            const getCustomerProblem = (name) => {
+                const problems = {
+                    "Der Analytische Skeptiker": "Zu viel Info, zu viele Fragen, nicht überzeugt",
+                    "Der Emotional Unschlüssige": "Angst vor falscher Entscheidung, Partner muss zustimmen",
+                    "Der Dominante Forderer": "Skeptisch, will Beweis dass es anders ist, sucht Hidden Benefit",
+                    "Der Sicherheitsorientierte Vorsichtige": "Angst vor Risiko, braucht Sicherheitsgarantien",
+                    "Der Budget-Bewusste Einsteiger": "Zu teuer, braucht Kleiner-Lösung, kein großes Kapital"
+                };
+                return problems[name] || "Problem unbekannt";
+            };
+
+            const customerObjections = objections[currentCustomer.name] || objections["Der Analytische Skeptiker"];
+
+            generatedPrompt = `# 🎤 BAUER GEMINI COACH - TRAINING SESSION
 
 Du bist erfahrener Bauer Immobilien-Berater.
 Trainee: Herr Komuzin
-Kunde: ${fiktiveName}
 
 ---
 
-## SETUP (LESE JETZT!)
+## SETUP (LESE JETZT - NICHT ANTWORTEN!)
 
-**Level:** ${currentLevel}
-**Kundentyp:** ${currentCustomer.name}
-**Programm:** ${currentProgram.name}
+**KUNDENNAME:** ${fiktiveName}
+**KUNDENTYP:** ${getCustomerType(currentCustomer.name)}
+**LEVEL:** ${currentLevel}
+**PROGRAMM:** ${currentProgram.name}
 
----
+**KUNDENZIEL:**
+${getCustomerGoal(currentCustomer.name)}
 
-**WARTE JETZT - Schreib "START" wenn du bereit bist!**
+**KUNDENPROBLEM:**
+${getCustomerProblem(currentCustomer.name)}
 
----
-
-Wenn Herr Komuzin "START" schreibt, DANN:
-
-1. Grüße: "Hallo Herr Komuzin, ich bin ${fiktiveName}..."
-2. Erkläre deine Situation kurz (Interesse an Immobilien-Beratung)
-3. Spreche deinen Einwand vor (Voice Mode!):
-   "${selectedObjection}"
-4. Frage: "Wie würdest du das sehen?"
-
-Nach seiner Antwort: Er bewertet sich selbst mit:
-Verständnis | Empathie | Fragetechnik | Nutzenkommunikation | Preis-Argumente | Closing | Natürlichkeit
-(Jeweils 0-10 Punkte)
-
-Runde 2-5 gleich.
-Nach Runde 5 schreibt er "Session vorbei" für Gesamtfeedback.
+**DEINE 5 EINWÄNDE (nacheinander, kein Feedback dazwischen):**
+1. ${customerObjections[0]}
+2. ${customerObjections[1]}
+3. ${customerObjections[2]}
+4. ${customerObjections[3]}
+5. ${customerObjections[4]}
 
 ---
 
-**BEREIT HERR KOMUZIN? SCHREIB: START**`;
+## WORKFLOW
+
+Wenn Herr Komuzin "START" schreibt:
+
+1. Grüße kurz: "Hallo Herr Komuzin, ich bin ${fiktiveName}..."
+2. Kurz deine Situation erklären (warum du Berater brauchst)
+3. EINWAND 1 vorbringen (natural wie im echten Dialog)
+4. Herr Komuzin antwortet → du gehst darauf ein (nicht automatisch nächster Einwand!)
+5. Nach seiner Antwort → EINWAND 2 (natürlich in Gesprächsfluss)
+6. Gleich für 3, 4, 5
+
+**NACH EINWAND 5 ANTWORTET HERR KOMUZIN NOCH EINMAL** → DANN schreibt er "FEEDBACK"
+
+Wenn Herr Komuzin "FEEDBACK" schreibt:
+- Kurz zusammenfassen wie das Gespräch lief
+- Seine Stärken (konkrete Beispiele)
+- Seine Schwächen (konkrete Beispiele)
+- 1-2 konkrete Tipps für nächstes Mal
+
+---
+
+## WICHTIG!
+
+✅ DIALOG IST NATÜRLICH - du gehst auf seine Antworten ein
+✅ KEINE UNTERBRECHUNGEN - du stellst nicht automatisch den nächsten Einwand
+✅ KEIN SCORING dazwischen - nur am Ende nach FEEDBACK
+✅ FLÜSSIGES GESPRÄCH - wie ein echtes Telefonat
+✅ DU NIMMST SEINE ARGUMENTE ERNST - bist nicht robotisch
+
+---
+
+**BEREIT? DANN: START**`;
         }
 
         function updatePromptDisplay() {
